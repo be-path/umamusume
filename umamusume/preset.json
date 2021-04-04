@@ -1,0 +1,864 @@
+{
+  "preset_info": {
+    "version": 11,
+    "title": "umamusume",
+    "description": "ウマ娘育成の画面上部の UI です。",
+    "author": "Nal",
+    "width": 961,
+    "height": 260,
+    "features": "CALENDAR",
+    "release": 354106811,
+    "locked": false,
+    "pflags": 0
+  },
+  "preset_root": {
+    "internal_events": [
+      {
+        "action": "KUSTOM_ACTION"
+      }
+    ],
+    "internal_type": "RootLayerModule",
+    "globals_list": {
+      "tbathmax": {
+        "index": 3,
+        "type": "TEXT",
+        "title": "tBatHMax",
+        "value": "$mu(max, bi(level, r0m), bi(level, r5m), bi(level, r10m), bi(level, r15m), bi(level, r20m), bi(level, r25m), bi(level, r30m), bi(level, r35m), bi(level, r40m), bi(level, r45m), bi(level, r50m), bi(level, r55m), bi(level, r60m))$",
+        "toggles": 1
+      },
+      "tbathmin": {
+        "index": 4,
+        "type": "TEXT",
+        "title": "tBatHMin",
+        "value": "$mu(min, bi(level, r0m), bi(level, r5m), bi(level, r10m), bi(level, r15m), bi(level, r20m), bi(level, r25m), bi(level, r30m), bi(level, r35m), bi(level, r40m), bi(level, r45m), bi(level, r50m), bi(level, r55m), bi(level, r60m))$",
+        "toggles": 1
+      },
+      "cmain": {
+        "index": 1,
+        "type": "COLOR",
+        "title": "cMain",
+        "value": "#FF6A74E8"
+      },
+      "cmain2": {
+        "index": 2,
+        "type": "COLOR",
+        "title": "cMain2",
+        "global_formula": "$ce(ce(gv(cmain), sat, a10), lum, r20)$",
+        "toggles": 10
+      },
+      "ttoday": {
+        "index": 5,
+        "type": "TEXT",
+        "title": "tToday",
+        "value": "$df(y)$y$df(MM)$M$df(dd)$d"
+      }
+    },
+    "config_scale_value": 120.0,
+    "viewgroup_items": [
+      {
+        "internal_type": "StackLayerModule",
+        "config_stacking": "HORIZONTAL_CENTER",
+        "config_margin": 12.0,
+        "viewgroup_items": [
+          {
+            "internal_type": "OverlapLayerModule",
+            "internal_title": "日めくり",
+            "viewgroup_items": [
+              {
+                "internal_type": "OverlapLayerModule",
+                "internal_toggles": {
+                  "config_visible": 10
+                },
+                "internal_formulas": {
+                  "config_visible": "$if(ci(end, 0), ALWAYS, NEVER)$"
+                },
+                "viewgroup_items": [
+                  {
+                    "internal_type": "ShapeModule",
+                    "shape_type": "RECT",
+                    "shape_width": 105.0,
+                    "shape_height": 90.0,
+                    "shape_corners": 5.0,
+                    "internal_title": "マスク",
+                    "fx_mask": "CLIP_NEXT"
+                  },
+                  {
+                    "internal_type": "OverlapLayerModule",
+                    "internal_title": "背景",
+                    "viewgroup_items": [
+                      {
+                        "internal_type": "OverlapLayerModule",
+                        "internal_title": "コンテンツ",
+                        "viewgroup_items": [
+                          {
+                            "internal_type": "ShapeModule",
+                            "shape_type": "RECT",
+                            "shape_width": 105.0,
+                            "shape_height": 90.0,
+                            "paint_color": "#FFCBCFE5",
+                            "position_anchor": "TOP",
+                            "internal_title": "影"
+                          },
+                          {
+                            "internal_type": "ShapeModule",
+                            "shape_type": "RECT",
+                            "shape_width": 103.0,
+                            "shape_height": 86.0,
+                            "position_anchor": "TOP",
+                            "shape_corners": 7.0
+                          }
+                        ]
+                      },
+                      {
+                        "internal_type": "OverlapLayerModule",
+                        "internal_title": "タイトルバー",
+                        "position_anchor": "TOP",
+                        "viewgroup_items": [
+                          {
+                            "internal_type": "ShapeModule",
+                            "shape_type": "RECT",
+                            "shape_width": 105.0,
+                            "paint_color": "#FF97E4FF",
+                            "internal_toggles": {
+                              "paint_color": 100,
+                              "fx_gradient_color": 100
+                            },
+                            "internal_globals": {
+                              "paint_color": "cmain",
+                              "fx_gradient_color": "cmain2"
+                            },
+                            "fx_gradient": "VERTICAL"
+                          },
+                          {
+                            "internal_type": "TextModule",
+                            "text_expression": "あと",
+                            "text_family": "kfile://org.kustom.provider/fonts/Roboto-Black.ttf",
+                            "text_size": 15.0,
+                            "fx_shadow": "OUTER",
+                            "fx_shadow_blur": 10.0,
+                            "fx_shadow_direction": 0,
+                            "fx_shadow_distance": 0,
+                            "fx_shadow_color": "#99000000"
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "internal_type": "OverlapLayerModule",
+                    "internal_toggles": {
+                      "config_visible": 10
+                    },
+                    "internal_formulas": {
+                      "config_visible": "$if(tf(ci(end, 0), D)>0, ALWAYS, NEVER)$"
+                    },
+                    "position_anchor": "BOTTOM",
+                    "viewgroup_items": [
+                      {
+                        "internal_type": "TextModule",
+                        "internal_toggles": {
+                          "paint_color": 100,
+                          "fx_gradient_color": 100
+                        },
+                        "internal_globals": {
+                          "paint_color": "cmain",
+                          "fx_gradient_color": "cmain2"
+                        },
+                        "text_expression": "$tf(ci(end, 0), D)$",
+                        "text_family": "kfile://org.kustom.provider/fonts/Roboto-Black.ttf",
+                        "text_width": 70.0,
+                        "text_size": 54.0,
+                        "paint_color": "#FF97E4FF",
+                        "fx_gradient": "VERTICAL",
+                        "text_size_type": "FIT_TO_BOX",
+                        "text_height": 60.0,
+                        "position_padding_bottom": 15.0
+                      },
+                      {
+                        "internal_type": "TextModule",
+                        "internal_toggles": {
+                          "paint_color": 100
+                        },
+                        "internal_globals": {
+                          "paint_color": "cmain2"
+                        },
+                        "text_expression": "日",
+                        "text_family": "kfile://org.kustom.provider/fonts/Roboto-Bold.ttf",
+                        "text_size": 15.0,
+                        "paint_color": "#FF97E4FF",
+                        "position_anchor": "BOTTOM",
+                        "position_padding_bottom": 4.0
+                      }
+                    ]
+                  },
+                  {
+                    "internal_type": "OverlapLayerModule",
+                    "internal_toggles": {
+                      "config_visible": 10
+                    },
+                    "internal_formulas": {
+                      "config_visible": "$if(tf(ci(end, 0), D)>0, NEVER, ALWAYS)$"
+                    },
+                    "position_padding_top": 20.0,
+                    "viewgroup_items": [
+                      {
+                        "internal_type": "TextModule",
+                        "internal_toggles": {
+                          "paint_color": 100,
+                          "fx_gradient_color": 100
+                        },
+                        "internal_globals": {
+                          "paint_color": "cmain",
+                          "fx_gradient_color": "cmain2"
+                        },
+                        "text_expression": "本番",
+                        "text_family": "kfile://org.kustom.provider/fonts/Roboto-Black.ttf",
+                        "text_width": 70.0,
+                        "text_size": 54.0,
+                        "paint_color": "#FF97E4FF",
+                        "fx_gradient": "VERTICAL",
+                        "text_size_type": "FIT_TO_BOX",
+                        "text_height": 60.0
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "internal_type": "ShapeModule",
+                "shape_type": "RECT",
+                "shape_width": 105.0,
+                "shape_height": 90.0,
+                "shape_corners": 5.0,
+                "internal_title": "枠",
+                "paint_style": "STROKE",
+                "paint_color": "#FF737373",
+                "paint_stroke": 2.0,
+                "internal_toggles": {
+                  "paint_color": 100
+                },
+                "internal_globals": {
+                  "paint_color": "cmain2"
+                }
+              },
+              {
+                "internal_type": "StackLayerModule",
+                "internal_title": "留め具",
+                "config_stacking": "HORIZONTAL_CENTER",
+                "config_margin": 46.0,
+                "position_padding_bottom": 82.0,
+                "viewgroup_items": [
+                  {
+                    "internal_type": "OverlapLayerModule",
+                    "viewgroup_items": [
+                      {
+                        "internal_type": "ShapeModule",
+                        "shape_type": "CIRCLE",
+                        "shape_width": 13.0,
+                        "paint_color": "#36FFFFFF",
+                        "position_padding_top": 14.0
+                      },
+                      {
+                        "internal_type": "ShapeModule",
+                        "shape_type": "CIRCLE",
+                        "shape_width": 13.0,
+                        "paint_color": "#FF4C4C4C",
+                        "position_padding_top": 12.0
+                      },
+                      {
+                        "internal_type": "ShapeModule",
+                        "shape_type": "RECT",
+                        "shape_width": 8.0,
+                        "shape_corners": 360,
+                        "paint_color": "#FFE7E7E7"
+                      },
+                      {
+                        "internal_type": "ShapeModule",
+                        "shape_type": "RECT",
+                        "shape_width": 8.0,
+                        "shape_corners": 360,
+                        "paint_style": "STROKE",
+                        "paint_color": "#FF696868",
+                        "paint_stroke": 2.0
+                      }
+                    ]
+                  },
+                  {
+                    "internal_type": "OverlapLayerModule",
+                    "viewgroup_items": [
+                      {
+                        "internal_type": "ShapeModule",
+                        "shape_type": "CIRCLE",
+                        "shape_width": 13.0,
+                        "paint_color": "#36FFFFFF",
+                        "position_padding_top": 14.0
+                      },
+                      {
+                        "internal_type": "ShapeModule",
+                        "shape_type": "CIRCLE",
+                        "shape_width": 13.0,
+                        "paint_color": "#FF4C4C4C",
+                        "position_padding_top": 12.0
+                      },
+                      {
+                        "internal_type": "ShapeModule",
+                        "shape_type": "RECT",
+                        "shape_width": 8.0,
+                        "shape_corners": 360,
+                        "paint_color": "#FFE7E7E7"
+                      },
+                      {
+                        "internal_type": "ShapeModule",
+                        "shape_type": "RECT",
+                        "shape_width": 8.0,
+                        "shape_corners": 360,
+                        "paint_style": "STROKE",
+                        "paint_color": "#FF696868",
+                        "paint_stroke": 2.0
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "internal_type": "StackLayerModule",
+            "config_margin": 3.0,
+            "internal_title": "右",
+            "viewgroup_items": [
+              {
+                "internal_type": "OverlapLayerModule",
+                "internal_title": "予定",
+                "viewgroup_items": [
+                  {
+                    "internal_type": "ShapeModule",
+                    "internal_title": "マスク",
+                    "shape_type": "RECT",
+                    "shape_width": 400.0,
+                    "shape_height": 50.0,
+                    "shape_corners": 12.0,
+                    "fx_mask": "CLIP_NEXT"
+                  },
+                  {
+                    "internal_type": "StackLayerModule",
+                    "config_stacking": "HORIZONTAL_CENTER",
+                    "viewgroup_items": [
+                      {
+                        "internal_type": "OverlapLayerModule",
+                        "internal_title": "キャプション",
+                        "viewgroup_items": [
+                          {
+                            "internal_type": "ShapeModule",
+                            "internal_toggles": {
+                              "paint_color": 10
+                            },
+                            "internal_formulas": {
+                              "paint_color": "$gv(cmain)$"
+                            },
+                            "shape_type": "RECT",
+                            "shape_width": 60.0,
+                            "shape_height": 50.0
+                          },
+                          {
+                            "internal_type": "TextModule",
+                            "text_expression": "目標",
+                            "text_size": 14.0,
+                            "fx_shadow": "OUTER",
+                            "fx_shadow_blur": 20.0,
+                            "fx_shadow_direction": 0,
+                            "fx_shadow_distance": 0,
+                            "fx_shadow_color": "#99000000",
+                            "position_anchor": "CENTERRIGHT",
+                            "position_padding_right": 10.0,
+                            "internal_toggles": {
+                              "fx_shadow_color": 0
+                            },
+                            "internal_globals": {
+                              "fx_shadow_color": "cmain2"
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "internal_type": "OverlapLayerModule",
+                        "internal_title": "詳細",
+                        "viewgroup_items": [
+                          {
+                            "internal_type": "ShapeModule",
+                            "internal_title": "背景",
+                            "shape_type": "RECT",
+                            "shape_width": 340.0,
+                            "shape_height": 50.0
+                          },
+                          {
+                            "internal_type": "StackLayerModule",
+                            "config_margin": 2.0,
+                            "position_anchor": "CENTERLEFT",
+                            "position_padding_left": 10.0,
+                            "viewgroup_items": [
+                              {
+                                "internal_type": "TextModule",
+                                "text_expression": "$ci(title, 0)$",
+                                "text_family": "kfile://org.kustom.provider/fonts/Roboto-Black.ttf",
+                                "text_size": 16.0,
+                                "paint_color": "#FF71321B"
+                              },
+                              {
+                                "internal_type": "ShapeModule",
+                                "shape_type": "RECT",
+                                "shape_width": 260.0,
+                                "shape_height": 1.0,
+                                "paint_color": "#FF858585"
+                              },
+                              {
+                                "internal_type": "OverlapLayerModule",
+                                "viewgroup_items": [
+                                  {
+                                    "internal_type": "ShapeModule",
+                                    "internal_title": "突っ張り棒",
+                                    "shape_type": "RECT",
+                                    "shape_width": 260.0,
+                                    "shape_height": 1.0,
+                                    "paint_color": "#00FFFFFF"
+                                  },
+                                  {
+                                    "internal_type": "TextModule",
+                                    "text_expression": "出走条件達成！",
+                                    "paint_color": "#FFFF6C00",
+                                    "text_family": "kfile://org.kustom.provider/fonts/Roboto-Black.ttf",
+                                    "text_size": 12.0,
+                                    "text_align": "RIGHT",
+                                    "position_anchor": "CENTERRIGHT"
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "internal_type": "OverlapLayerModule",
+                            "internal_title": "詳細",
+                            "position_anchor": "CENTERRIGHT",
+                            "position_padding_right": 5.0,
+                            "internal_events": [
+                              {
+                                "type": "SINGLE_TAP",
+                                "action": "OPEN_LINK",
+                                "url": "$ci(url, 0)$"
+                              }
+                            ],
+                            "viewgroup_items": [
+                              {
+                                "internal_type": "OverlapLayerModule",
+                                "internal_title": "背景",
+                                "viewgroup_items": [
+                                  {
+                                    "internal_type": "ShapeModule",
+                                    "shape_type": "RECT",
+                                    "shape_width": 60.0,
+                                    "shape_height": 30.0,
+                                    "shape_corners": 360,
+                                    "internal_title": "影",
+                                    "paint_color": "#8445506B",
+                                    "position_padding_top": 6.0
+                                  },
+                                  {
+                                    "internal_type": "ShapeModule",
+                                    "shape_type": "RECT",
+                                    "shape_width": 60.0,
+                                    "shape_height": 30.0,
+                                    "shape_corners": 360,
+                                    "internal_title": "背景",
+                                    "paint_color": "#FFE3E3E3"
+                                  },
+                                  {
+                                    "internal_type": "ShapeModule",
+                                    "shape_type": "RECT",
+                                    "shape_width": 58.0,
+                                    "shape_height": 28.0,
+                                    "shape_corners": 360,
+                                    "internal_title": "ハイライト",
+                                    "fx_gradient": "VERTICAL",
+                                    "fx_gradient_color": "#00FFFFFF",
+                                    "fx_gradient_offset": 20.0
+                                  },
+                                  {
+                                    "internal_type": "ShapeModule",
+                                    "shape_type": "RECT",
+                                    "shape_width": 58.0,
+                                    "shape_height": 28.0,
+                                    "shape_corners": 360,
+                                    "internal_title": "内枠",
+                                    "paint_style": "STROKE",
+                                    "fx_gradient_color": "#3CFFFFFF"
+                                  },
+                                  {
+                                    "internal_type": "ShapeModule",
+                                    "shape_type": "RECT",
+                                    "shape_width": 60.0,
+                                    "shape_height": 30.0,
+                                    "shape_corners": 360,
+                                    "internal_title": "外枠",
+                                    "paint_color": "#FF4C4C4C",
+                                    "paint_style": "STROKE",
+                                    "paint_stroke": 2.0
+                                  }
+                                ]
+                              },
+                              {
+                                "internal_type": "TextModule",
+                                "text_expression": "詳 細",
+                                "text_family": "kfile://org.kustom.provider/fonts/Roboto-Black.ttf",
+                                "text_size": 14.0,
+                                "fx_shadow_blur": 15.0,
+                                "fx_shadow_direction": 0,
+                                "fx_shadow_distance": 0,
+                                "paint_color": "#FF71321B"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "internal_type": "ShapeModule",
+                    "shape_type": "RECT",
+                    "shape_width": 400.0,
+                    "shape_height": 50.0,
+                    "shape_corners": 12.0,
+                    "internal_title": "枠",
+                    "paint_style": "STROKE",
+                    "paint_color": "#FF717171",
+                    "paint_stroke": 2.0,
+                    "internal_toggles": {
+                      "paint_color": 100
+                    },
+                    "internal_globals": {
+                      "paint_color": "cmain2"
+                    }
+                  }
+                ]
+              },
+              {
+                "internal_type": "StackLayerModule",
+                "config_stacking": "HORIZONTAL_CENTER",
+                "config_margin": 10.0,
+                "internal_title": "体力・やる気",
+                "viewgroup_items": [
+                  {
+                    "internal_type": "OverlapLayerModule",
+                    "internal_title": "体力ゲージ",
+                    "viewgroup_items": [
+                      {
+                        "internal_type": "ShapeModule",
+                        "shape_type": "RECT",
+                        "shape_width": 252.0,
+                        "shape_height": 32.0,
+                        "shape_corners": 360,
+                        "internal_title": "背景"
+                      },
+                      {
+                        "internal_type": "ShapeModule",
+                        "shape_type": "RECT",
+                        "shape_width": 252.0,
+                        "shape_height": 32.0,
+                        "shape_corners": 360,
+                        "internal_title": "背景",
+                        "paint_style": "STROKE",
+                        "paint_color": "#FFB8B8B8"
+                      },
+                      {
+                        "internal_type": "StackLayerModule",
+                        "config_stacking": "HORIZONTAL_CENTER",
+                        "viewgroup_items": [
+                          {
+                            "internal_type": "OverlapLayerModule",
+                            "internal_title": "キャプション",
+                            "viewgroup_items": [
+                              {
+                                "internal_type": "ShapeModule",
+                                "shape_type": "RECT",
+                                "shape_width": 40.0,
+                                "shape_corners": 360
+                              },
+                              {
+                                "internal_type": "TextModule",
+                                "paint_color": "#FF71321B",
+                                "text_expression": "体力",
+                                "text_family": "kfile://org.kustom.provider/fonts/Roboto-Black.ttf",
+                                "text_size": 14.0,
+                                "position_padding_left": 4.0
+                              }
+                            ]
+                          },
+                          {
+                            "internal_type": "OverlapLayerModule",
+                            "viewgroup_items": [
+                              {
+                                "internal_type": "ShapeModule",
+                                "shape_type": "RECT",
+                                "shape_width": 206.0,
+                                "shape_height": 26.0,
+                                "shape_corners": 360,
+                                "paint_style": "STROKE",
+                                "paint_color": "#FF65463F",
+                                "paint_stroke": 2.0,
+                                "internal_title": "枠"
+                              },
+                              {
+                                "internal_type": "OverlapLayerModule",
+                                "internal_title": "内",
+                                "viewgroup_items": [
+                                  {
+                                    "internal_type": "ShapeModule",
+                                    "shape_type": "RECT",
+                                    "shape_width": 200.0,
+                                    "shape_corners": 360,
+                                    "paint_color": "#FFD8D8D8",
+                                    "fx_mask": "CLIP_NEXT",
+                                    "internal_title": "マスク"
+                                  },
+                                  {
+                                    "internal_type": "OverlapLayerModule",
+                                    "viewgroup_items": [
+                                      {
+                                        "internal_type": "StackLayerModule",
+                                        "config_stacking": "HORIZONTAL_CENTER",
+                                        "internal_title": "グラデーション背景",
+                                        "viewgroup_items": [
+                                          {
+                                            "internal_type": "ShapeModule",
+                                            "shape_type": "RECT",
+                                            "shape_width": 40.0,
+                                            "paint_color": "#FF53A5FF",
+                                            "fx_gradient": "HORIZONTAL",
+                                            "fx_gradient_color": "#FF00FFF9",
+                                            "internal_toggles": {
+                                              "shape_width": 0
+                                            }
+                                          },
+                                          {
+                                            "internal_type": "ShapeModule",
+                                            "shape_type": "RECT",
+                                            "shape_width": 40.0,
+                                            "paint_color": "#FF00FFF9",
+                                            "fx_gradient": "HORIZONTAL",
+                                            "fx_gradient_color": "#FF00FF3E"
+                                          },
+                                          {
+                                            "internal_type": "ShapeModule",
+                                            "shape_type": "RECT",
+                                            "shape_width": 40.0,
+                                            "paint_color": "#FF00FF3E",
+                                            "fx_gradient": "HORIZONTAL",
+                                            "fx_gradient_color": "#FFFFF800"
+                                          },
+                                          {
+                                            "internal_type": "ShapeModule",
+                                            "shape_type": "RECT",
+                                            "shape_width": 80.0,
+                                            "paint_color": "#FFFFF800",
+                                            "fx_gradient": "HORIZONTAL",
+                                            "fx_gradient_color": "#FFFF3939"
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "internal_type": "StackLayerModule",
+                                        "config_stacking": "HORIZONTAL_CENTER",
+                                        "position_anchor": "CENTERRIGHT",
+                                        "internal_title": "消費",
+                                        "viewgroup_items": [
+                                          {
+                                            "internal_type": "ShapeModule",
+                                            "shape_type": "RECT",
+                                            "shape_height": 40.0,
+                                            "paint_color": "#B1FFFFFF",
+                                            "position_anchor": "CENTERRIGHT",
+                                            "internal_toggles": {
+                                              "shape_width": 10
+                                            },
+                                            "internal_formulas": {
+                                              "shape_width": "$mu(max, 0, (bi(level)-gv(tbathmin)))/100*200$"
+                                            }
+                                          },
+                                          {
+                                            "internal_type": "ShapeModule",
+                                            "shape_type": "RECT",
+                                            "shape_height": 40.0,
+                                            "paint_color": "#A3624444",
+                                            "position_anchor": "CENTERRIGHT",
+                                            "internal_toggles": {
+                                              "shape_width": 10
+                                            },
+                                            "internal_formulas": {
+                                              "shape_width": "$mu(max, 0, gv(tbathmax)-bi(level))/100*200$"
+                                            }
+                                          },
+                                          {
+                                            "internal_type": "ShapeModule",
+                                            "shape_type": "RECT",
+                                            "shape_height": 40.0,
+                                            "paint_color": "#FF6B6969",
+                                            "position_anchor": "CENTERRIGHT",
+                                            "internal_toggles": {
+                                              "shape_width": 10
+                                            },
+                                            "internal_formulas": {
+                                              "shape_width": "$mu(max, 0, (100-gv(tbathmax)))/100*200$"
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  {
+                    "internal_type": "OverlapLayerModule",
+                    "internal_title": "やる気",
+                    "viewgroup_items": [
+                      {
+                        "internal_type": "OverlapLayerModule",
+                        "internal_title": "背景",
+                        "viewgroup_items": [
+                          {
+                            "internal_type": "ShapeModule",
+                            "shape_type": "RECT",
+                            "shape_width": 80.0,
+                            "shape_height": 30.0,
+                            "shape_corners": 360,
+                            "internal_title": "背景",
+                            "paint_color": "#FFFF2C80"
+                          },
+                          {
+                            "internal_type": "ShapeModule",
+                            "shape_type": "RECT",
+                            "shape_width": 80.0,
+                            "shape_height": 30.0,
+                            "shape_corners": 360,
+                            "internal_title": "外枠",
+                            "paint_color": "#FFB13C6B",
+                            "paint_style": "STROKE",
+                            "paint_stroke": 2.0
+                          },
+                          {
+                            "internal_type": "ShapeModule",
+                            "shape_type": "RECT",
+                            "shape_width": 78.0,
+                            "shape_height": 28.0,
+                            "shape_corners": 360,
+                            "internal_title": "内枠",
+                            "paint_color": "#83FFFFFF",
+                            "paint_style": "STROKE",
+                            "fx_gradient": "VERTICAL",
+                            "fx_gradient_color": "#3CFFFFFF"
+                          },
+                          {
+                            "internal_type": "ShapeModule",
+                            "shape_type": "RECT",
+                            "shape_width": 78.0,
+                            "shape_height": 28.0,
+                            "shape_corners": 360,
+                            "internal_title": "ハイライト",
+                            "paint_color": "#B0FFFFFF",
+                            "fx_gradient": "VERTICAL",
+                            "fx_gradient_color": "#00FFFFFF",
+                            "fx_gradient_offset": 20.0
+                          }
+                        ]
+                      },
+                      {
+                        "internal_type": "StackLayerModule",
+                        "config_stacking": "HORIZONTAL_CENTER",
+                        "config_margin": -2.0,
+                        "position_padding_right": 2.0,
+                        "viewgroup_items": [
+                          {
+                            "internal_type": "OverlapLayerModule",
+                            "config_rotate_mode": "DEG270",
+                            "internal_title": "矢印",
+                            "viewgroup_items": [
+                              {
+                                "internal_type": "StackLayerModule",
+                                "config_stacking": "HORIZONTAL_CENTER",
+                                "internal_title": "疑似影",
+                                "viewgroup_items": [
+                                  {
+                                    "internal_type": "ShapeModule",
+                                    "shape_type": "RECT",
+                                    "shape_width": 12.0,
+                                    "shape_height": 10.0,
+                                    "paint_color": "#FFB13C6B"
+                                  },
+                                  {
+                                    "internal_type": "ShapeModule",
+                                    "shape_type": "TRIANGLE",
+                                    "shape_width": 10.0,
+                                    "paint_color": "#FFB13C6B"
+                                  }
+                                ]
+                              },
+                              {
+                                "internal_type": "StackLayerModule",
+                                "config_stacking": "HORIZONTAL_CENTER",
+                                "viewgroup_items": [
+                                  {
+                                    "internal_type": "ShapeModule",
+                                    "shape_type": "RECT",
+                                    "shape_width": 10.0,
+                                    "shape_height": 6.0,
+                                    "paint_color": "#FFFFB9D5",
+                                    "fx_gradient": "HORIZONTAL",
+                                    "fx_gradient_color": "#FFFFFFFF"
+                                  },
+                                  {
+                                    "internal_type": "ShapeModule",
+                                    "shape_type": "TRIANGLE",
+                                    "shape_width": 8.0,
+                                    "shape_height": 15.0
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "internal_type": "TextModule",
+                            "text_expression": "絶好調",
+                            "text_family": "kfile://org.kustom.provider/fonts/Roboto-Black.ttf",
+                            "text_size": 12.0,
+                            "fx_shadow": "OUTER",
+                            "fx_shadow_blur": 15.0,
+                            "fx_shadow_direction": 0,
+                            "fx_shadow_distance": 0
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "internal_type": "BitmapModule",
+        "bitmap_bitmap": "kfile://org.kustom.provider/bitmaps/IMG8bec5378101d7e51e1bd5f4b7115e047",
+        "bitmap_width": 36.0,
+        "bitmap_rmode": "MANUAL",
+        "bitmap_rotate": 315.0,
+        "internal_title": "蹄鉄",
+        "position_offset_x": -135.0,
+        "position_offset_y": -23.0
+      }
+    ]
+  }
+}
