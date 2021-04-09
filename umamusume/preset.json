@@ -60,7 +60,7 @@
         "index": 11,
         "type": "TEXT",
         "title": "tDay",
-        "value": "2",
+        "value": "0",
         "toggles": 1
       },
       "tdaymax": {
@@ -68,16 +68,16 @@
         "type": "NUMBER",
         "title": "tDayMax",
         "description": "表示する予定の最大数",
-        "min": 0,
-        "max": 99,
-        "value": 4.0
+        "min": 1,
+        "max": 100,
+        "value": 5.0
       },
       "bdtext": {
         "index": 4,
         "type": "SWITCH",
         "title": "bDText",
         "description": "ONで「出走条件達成！」OFFで予定の開始日時を表示する",
-        "value": 1
+        "value": 0
       }
     },
     "viewgroup_items": [
@@ -96,7 +96,7 @@
                 "type": "SINGLE_TAP",
                 "action": "SWITCH_GLOBAL",
                 "switch": "tday",
-                "switch_text": "$if(gv(tday) >= gv(tdaymax), 0, ci(start, gv(tday) + 1), gv(tday) + 1, 0)$"
+                "switch_text": "$if(gv(tday) >= gv(tdaymax) - 1, 0, ci(start, gv(tday) + 1), gv(tday) + 1, 0)$"
               }
             ],
             "viewgroup_items": [
