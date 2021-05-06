@@ -4,8 +4,8 @@
     "title": "umamusume",
     "description": "ウマ娘育成の画面上部の UI です。",
     "author": "Nal",
-    "width": 1080,
-    "height": 341,
+    "width": 1058,
+    "height": 348,
     "features": "CALENDAR SIGNAL",
     "release": 354106811,
     "locked": false,
@@ -78,6 +78,12 @@
         "title": "bDText",
         "description": "ONで「出走条件達成！」OFFで予定の開始日時を表示する",
         "value": 0
+      },
+      "fmain": {
+        "index": 12,
+        "type": "FONT",
+        "title": "fMain",
+        "value": "kfile://org.kustom.sdcard.000/fonts/umakogoBL.ttf"
       }
     },
     "viewgroup_items": [
@@ -183,7 +189,13 @@
                                 "fx_shadow_blur": 10.0,
                                 "fx_shadow_direction": 0,
                                 "fx_shadow_distance": 0,
-                                "fx_shadow_color": "#99000000"
+                                "fx_shadow_color": "#99000000",
+                                "internal_toggles": {
+                                  "text_family": 100
+                                },
+                                "internal_globals": {
+                                  "text_family": "fmain"
+                                }
                               }
                             ]
                           }
@@ -235,10 +247,12 @@
                           {
                             "internal_type": "TextModule",
                             "internal_toggles": {
-                              "paint_color": 100
+                              "paint_color": 100,
+                              "text_family": 100
                             },
                             "internal_globals": {
-                              "paint_color": "cmain2"
+                              "paint_color": "cmain2",
+                              "text_family": "fmain"
                             },
                             "text_expression": "$if(ci(allday, gv(tDay)), 日, tf(ci(start, gv(tDay)), D) > 0, 日,  tf(ci(start, gv(tDay)), h) > 0, 時間 , 分)$",
                             "text_family": "kfile://org.kustom.provider/fonts/Roboto-Bold.ttf",
@@ -262,11 +276,13 @@
                             "internal_type": "TextModule",
                             "internal_toggles": {
                               "paint_color": 100,
-                              "fx_gradient_color": 100
+                              "fx_gradient_color": 100,
+                              "text_family": 100
                             },
                             "internal_globals": {
                               "paint_color": "cmain",
-                              "fx_gradient_color": "cmain2"
+                              "fx_gradient_color": "cmain2",
+                              "text_family": "fmain"
                             },
                             "text_expression": "本番",
                             "text_family": "kfile://org.kustom.provider/fonts/Roboto-Black.ttf",
@@ -467,10 +483,12 @@
                                 "position_anchor": "CENTERRIGHT",
                                 "position_padding_right": 10.0,
                                 "internal_toggles": {
-                                  "fx_shadow_color": 0
+                                  "fx_shadow_color": 0,
+                                  "text_family": 100
                                 },
                                 "internal_globals": {
-                                  "fx_shadow_color": "cmain2"
+                                  "fx_shadow_color": "cmain2",
+                                  "text_family": "fmain"
                                 }
                               }
                             ]
@@ -520,21 +538,30 @@
                                       "config_visible": " $if(ci(end, 0), ALWAYS, NEVER)$"
                                     },
                                     "internal_title": "予定あり",
-                                    "config_margin": 4.0,
+                                    "config_margin": 5.0,
                                     "viewgroup_items": [
                                       {
                                         "internal_type": "TextModule",
                                         "text_expression": "$ci(title, gv(tday))$",
                                         "text_family": "kfile://org.kustom.provider/fonts/Roboto-Black.ttf",
                                         "text_size": 16.0,
-                                        "paint_color": "#FF71321B"
+                                        "paint_color": "#FF71321B",
+                                        "internal_toggles": {
+                                          "text_family": 100
+                                        },
+                                        "internal_globals": {
+                                          "text_family": "fmain"
+                                        },
+                                        "text_size_type": "FIT_TO_BOX",
+                                        "text_width": 260.0,
+                                        "text_height": 15.0
                                       },
                                       {
                                         "internal_type": "ShapeModule",
                                         "shape_type": "RECT",
                                         "shape_width": 260.0,
                                         "shape_height": 1.0,
-                                        "paint_color": "#FF858585"
+                                        "paint_color": "#FFD7D7D7"
                                       },
                                       {
                                         "internal_type": "OverlapLayerModule",
@@ -552,9 +579,15 @@
                                             "text_expression": "$if(gv(bdtext), 出走条件達成！, ci(allday, gv(tday)), df(y/MM/dd, ci(start, gv(tday))), df(y/MM/dd hh:mm, ci(start, gv(tday))))$ ",
                                             "paint_color": "#FFFF6C00",
                                             "text_family": "kfile://org.kustom.provider/fonts/Roboto-Black.ttf",
-                                            "text_size": 12.0,
+                                            "text_size": 14.0,
                                             "text_align": "RIGHT",
-                                            "position_anchor": "CENTERRIGHT"
+                                            "position_anchor": "CENTERRIGHT",
+                                            "internal_toggles": {
+                                              "text_family": 100
+                                            },
+                                            "internal_globals": {
+                                              "text_family": "fmain"
+                                            }
                                           }
                                         ]
                                       }
@@ -640,7 +673,13 @@
                                     "fx_shadow_blur": 15.0,
                                     "fx_shadow_direction": 0,
                                     "fx_shadow_distance": 0,
-                                    "paint_color": "#FF71321B"
+                                    "paint_color": "#FF71321B",
+                                    "internal_toggles": {
+                                      "text_family": 100
+                                    },
+                                    "internal_globals": {
+                                      "text_family": "fmain"
+                                    }
                                   }
                                 ]
                               }
@@ -726,7 +765,13 @@
                                 "text_expression": "体力",
                                 "text_family": "kfile://org.kustom.provider/fonts/Roboto-Black.ttf",
                                 "text_size": 14.0,
-                                "position_padding_left": 4.0
+                                "position_padding_left": 4.0,
+                                "internal_toggles": {
+                                  "text_family": 100
+                                },
+                                "internal_globals": {
+                                  "text_family": "fmain"
+                                }
                               }
                             ]
                           },
@@ -1049,7 +1094,13 @@
                                 "fx_shadow_blur": 15.0,
                                 "fx_shadow_direction": 0,
                                 "fx_shadow_distance": 0,
-                                "fx_shadow_color": "#FF6000E6"
+                                "fx_shadow_color": "#FF6000E6",
+                                "internal_toggles": {
+                                  "text_family": 100
+                                },
+                                "internal_globals": {
+                                  "text_family": "fmain"
+                                }
                               }
                             ]
                           }
@@ -1179,7 +1230,13 @@
                                 "fx_shadow_blur": 15.0,
                                 "fx_shadow_direction": 0,
                                 "fx_shadow_distance": 0,
-                                "fx_shadow_color": "#FF2C4599"
+                                "fx_shadow_color": "#FF2C4599",
+                                "internal_toggles": {
+                                  "text_family": 100
+                                },
+                                "internal_globals": {
+                                  "text_family": "fmain"
+                                }
                               }
                             ]
                           }
@@ -1307,7 +1364,13 @@
                                 "fx_shadow_blur": 15.0,
                                 "fx_shadow_direction": 0,
                                 "fx_shadow_distance": 0,
-                                "fx_shadow_color": "#FFC57A00"
+                                "fx_shadow_color": "#FFC57A00",
+                                "internal_toggles": {
+                                  "text_family": 100
+                                },
+                                "internal_globals": {
+                                  "text_family": "fmain"
+                                }
                               }
                             ]
                           }
@@ -1437,7 +1500,13 @@
                                 "fx_shadow_blur": 15.0,
                                 "fx_shadow_direction": 0,
                                 "fx_shadow_distance": 0,
-                                "fx_shadow_color": "#FFE56100"
+                                "fx_shadow_color": "#FFE56100",
+                                "internal_toggles": {
+                                  "text_family": 100
+                                },
+                                "internal_globals": {
+                                  "text_family": "fmain"
+                                }
                               }
                             ]
                           }
@@ -1566,7 +1635,13 @@
                                 "fx_shadow_blur": 15.0,
                                 "fx_shadow_direction": 0,
                                 "fx_shadow_distance": 0,
-                                "fx_shadow_color": "#FFB13C6B"
+                                "fx_shadow_color": "#FFB13C6B",
+                                "internal_toggles": {
+                                  "text_family": 100
+                                },
+                                "internal_globals": {
+                                  "text_family": "fmain"
+                                }
                               }
                             ]
                           }
